@@ -5,6 +5,8 @@ require 'open-uri'
 require 'nokogiri'
 require 'selenium-webdriver'
 
+require './password.rb'
+
 driver = Selenium::WebDriver.for :chrome
 
 driver.navigate.to "http://p.eagate.573.jp/game/reflec/volzza/p/music/index.html"
@@ -16,9 +18,9 @@ driver.find_element(:id, "login_str").click
 # 巷のブログとかだと別の言語で書かれてる可能性があるので注意
 
 konami_id = driver.find_element(:id, "KID")
-konami_id.send_keys "USER"
+konami_id.send_keys KONAMI_ID
 password = driver.find_element(:id, "pass")
-password.send_keys "password"
+password.send_keys PASSWORD
 
 sleep 10
 # この間に画像認証を人手で実行する。
